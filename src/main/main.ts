@@ -14,6 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import { initController } from './controller';
 
 class AppUpdater {
   constructor() {
@@ -80,6 +81,8 @@ const createWindow = async () => {
         : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
   });
+
+  initController(mainWindow);
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
